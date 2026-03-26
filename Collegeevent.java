@@ -10,5 +10,6 @@ public class Collegeevent {
     int celebrity = sc.nextInt();
     int remainingfund = registration+sponsorship+stall-stage-celebrity;
       System.out.println("Remainingfund = "+remainingfund);
+      sc.close();
     }
 }
