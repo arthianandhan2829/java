@@ -10,6 +10,6 @@ public static void main(String[]args){
    int advance = sc.nextInt();
     int projectcost = (hours*rate)+design - testing - advance;
     System.out.println("Final Praoject cost = "+ projectcost);
-
+    sc.close();
 }
 }
