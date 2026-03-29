@@ -9,6 +9,7 @@ public class Cinemaprofit {
         int electricitybill = sc.nextInt();
         int netprofit = ticketrevenue+snackrevenue-maintencecost-electricitybill;
         System.out.println("Net profit =" + netprofit);
+        sc.close();
     
     
     }
