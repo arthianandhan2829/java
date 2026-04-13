@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class EnergyOptimizer {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // INPUT
+        System.out.print("Enter Electricity Rate Tier (Low / Medium / High): ");
+        String rateTier = sc.next();
+
+        System.out.print("Enter Time of Day (Peak / OffPeak / MidPeak): ");
+        String timeOfDay = sc.next();
+
+        System.out.print("Enter Total Power Consumption (in kWh): ");
+        double consumption = sc.nextDouble();
+
+        System.out.print("Is Renewable Energy Available? (Yes / No): ");
+        String renewable = sc.next();
+
+        String recommendation = "";
+        double costFactor = 1.0;
+        String alert = "";
+        if (rateTier.equalsIgnoreCase("Low")) {
+            costFactor = 0.8;
+
+            if (timeOfDay.equalsIgnoreCase("OffPeak")) {
+                recommendation = "Run all high-power appliances now.";
+            } else if (timeOfDay.equalsIgnoreCase("MidPeak")) {
+                recommendation = "Use medium appliances; avoid heavy loads.";
+            } else {
+                recommendation = "Use minimum appliances.";
+            }
+        }
+
+        else if (rateTier.equalsIgnoreCase("Medium")) {
+            costFactor = 1.0;
+
+            if (timeOfDay.equalsIgnoreCase("OffPeak")) {
+                recommendation = "Good time for washing machine or water heater.";
+            } else {
+                recommendation = "Limit usage of high-power appliances.";
+            }
+        }
+
+        else if (rateTier.equalsIgnoreCase("High")) {
+            costFactor = 1.3;
+
+            if (timeOfDay.equalsIgnoreCase("Peak")) {
+                recommendation = "Avoid all high-power appliances. Consider delay.";
+            } else {
+                recommendation = "Use appliances only if necessary.";
+            }
+        }
+
+        else {
+            System.out.println("Invalid Rate Tier!");
+            return;
+        }
+        if (renewable.equalsIgnoreCase("Yes")) {
+            recommendation += " Renewable energy available—priority usage recommended.";
+            costFactor -= 0.2;
+        }
+        if (consumption > 10) {
+            alert = "High consumption alert! Reduce appliance usage immediately.";
+        } else if (consumption >= 5) {
+            alert = "Moderate consumption. Monitor usage.";
+        } else {
+            alert = "Energy usage is optimal.";
+        }
+        double estimatedCost = consumption * costFactor * 10; 
+        System.out.println("\n-----------------------------------");
+        System.out.println("RECOMMENDATION: " + recommendation);
+        System.out.println("Estimated Energy Cost: ₹" + estimatedCost);
+        System.out.println("ALERT: " + alert);
+        System.out.println("-----------------------------------");
+    }
+}
